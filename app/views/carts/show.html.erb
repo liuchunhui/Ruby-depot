@@ -1,21 +1,22 @@
-<h2>Your Pragmatic Cart</h2>
-<ul>
+<div class="cart_title">Your Cart</div>
+
+<table>
 	<% @cart.line_items.each do |item| %>
-	<div  class="entry">
-		<%= image_tag(item.product.image_url) %>
-		<h3><%= item.product.title %></h3>
-		<%= sanitize(item.product.description)  %>
-		<div class="price_line">
-			<span  class="price"><%= number_to_currency(item.product.price) %></span>
-		</div
-	</div>
+	<tr>
+		<td><%= item.quantity %> &times; </td>
+		<td><%= item.product.title %></td>
+		<td class="item_price"><%= number_to_currency(item.product.price) %></td>
+	</tr>	
+	<% end %>
+	<tr class="total_line">
+		<td colspan="2"><strong>Total:</strong></td>
+		<td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+	</tr>	
+</table>
 
-		
-	<% end %>	
-</ul>
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Empty Cart',@cart,  method: :delete, confirm:  'Are you sure?' %>
+<!--<%= link_to 'Edit', edit_cart_path(@cart) %> 
 <%= link_to 'Back', carts_path %>
 <br />
 <br />
-<%= link_to 'stroe index',store_index_path %>
+<%= link_to 'stroe index',store_index_path %>-->
