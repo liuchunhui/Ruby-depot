@@ -1,0 +1,21 @@
+<h2>Your Pragmatic Cart</h2>
+<ul>
+	<% @cart.line_items.each do |item| %>
+	<div  class="entry">
+		<%= image_tag(item.product.image_url) %>
+		<h3><%= item.product.title %></h3>
+		<%= sanitize(item.product.description)  %>
+		<div class="price_line">
+			<span  class="price"><%= number_to_currency(item.product.price) %></span>
+		</div
+	</div>
+
+		
+	<% end %>	
+</ul>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+<br />
+<br />
+<%= link_to 'stroe index',store_index_path %>
