@@ -37,6 +37,16 @@ class ProductsController < ApplicationController
 		@product.destroy
 		redirect_to  products_path
 	end
+
+################################################################
+	def who_bought
+		@product = Product.find(params[:id])
+		respond_to do |format|
+			format.atom
+			format.xml  { render :xml => @product}
+		end
+	end
+################################################################
 	private 
 	def product_params
 		params.require(:product).permit(:title,:description,:image_url,:price)
